@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ArFurniture</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_up_msg">Don\'t have an account?<b>Sign Up</b></string>
+
+    <!-- sign up-->
+
+    <string name="sign_up">Sign Up</string>
+    <string name="nice_to_see_you_here">Nice to see you here</string>
+    <string name="sign_in_msg">Already a user?<b>Sign In</b></string>
+
+    <!-- forgot pass-->
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="dont_worry_we_will_help_you_out">Don\'t worry we will help you out</string>
+    <string name="click_here_to_recover">Click here to recover</string>
+    <string name="go_back_to_login">Go back to <b>Sign In</b></string>
+    <!-- home fragment-->
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="best_furniture_for_your_house">Best Furniture For Your House</string>
+</resources>

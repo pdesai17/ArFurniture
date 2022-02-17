@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.HomeFragment"
+    android:background="@color/bg">
+
+    <TextView
+        android:id="@+id/tv_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/raleway_regular"
+        android:paddingRight="@dimen/padding_170"
+        android:text="@string/best_furniture_for_your_house"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_x_large" />
+
+    <AutoCompleteTextView
+        android:id="@+id/actv_search"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_heading"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/white_card_view"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/padding_small"
+        android:elevation="2dp"
+        android:hint="Search"
+        android:padding="@dimen/padding_small" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_categorytabs"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/actv_search"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_x_small"
+        app:tabBackground="@drawable/tab_selected_bg"
+        app:tabIconTint="@color/icon_color_selector"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorHeight="0dp"
+        app:tabInlineLabel="true"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/tab_text_appearance"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tl_categorytabs" />
+</RelativeLayout>

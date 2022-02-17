@@ -1,0 +1,43 @@
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="2dp"
+    android:layout_margin="@dimen/margin_x_small"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_small">
+
+        <ImageView
+            android:id="@+id/iv_pImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/grey_chair"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tv_pName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_pImage"
+            android:layout_alignStart="@+id/iv_pImage"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Grey Chair"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_medium" />
+        <TextView
+            android:id="@+id/tv_pPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_pName"
+            android:layout_alignStart="@+id/iv_pImage"
+            android:text="Rs. 4000"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_small"
+            android:fontFamily="@font/raleway_regular"/>
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>

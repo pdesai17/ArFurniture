@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/black_card_view.xml" value="0.2323799795709908" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/drawable_start.xml" value="0.23697916666666666" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/login.xml" value="0.23148148148148148" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/tab_bg.xml" value="0.2323799795709908" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/tab_selected_bg.xml" value="0.2323799795709908" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/tab_selected_icon.xml" value="0.1" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/white_card_view.xml" value="0.23697916666666666" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_forgot_pass.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_main_screen.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_cart.xml" value="0.19895833333333332" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_like.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_profile.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/item_category_layout.xml" value="0.176" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.21666666666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

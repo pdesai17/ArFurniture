@@ -1,0 +1,136 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <TextView
+        android:id="@+id/tv_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/raleway_regular"
+        android:text="@string/sign_up"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_x_large" />
+
+    <TextView
+        android:id="@+id/tv_sign_in_to_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sign_up"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_x_small"
+        android:fontFamily="@font/raleway_regular"
+        android:text="@string/nice_to_see_you_here"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text_x_medium" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sign_in_to_continue"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/margin_medium"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tie_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_medium"
+                android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cv_email"
+        android:layout_alignParentLeft="true"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tie_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_medium"
+                android:hint="Password" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cv_password"
+        android:layout_alignParentLeft="true"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="@dimen/margin_150"
+        android:background="@drawable/black_card_view"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/sign_in"
+        android:textSize="@dimen/text_medium"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_google_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_sign_in"
+        android:layout_alignParentLeft="true"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@drawable/white_card_view"
+        android:drawableStart="@drawable/ic_google"
+        android:fontFamily="@font/raleway_medium"
+        android:paddingLeft="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_large"
+        android:text="@string/sign_in_with_google"
+        android:textSize="@dimen/text_medium"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_dont_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_google_sign_in"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/margin_130"
+        android:fontFamily="@font/raleway_regular"
+        android:text="@string/sign_in_msg"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_small" />
+</RelativeLayout>
