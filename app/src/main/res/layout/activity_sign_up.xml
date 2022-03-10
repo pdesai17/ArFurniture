@@ -89,7 +89,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sign_in"
+        android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cv_password"
@@ -99,16 +99,16 @@
         android:layout_marginTop="@dimen/margin_150"
         android:background="@drawable/black_card_view"
         android:fontFamily="@font/raleway_medium"
-        android:text="@string/sign_in"
-        android:textSize="@dimen/text_medium"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_medium" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_google_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_sign_in"
+        android:layout_below="@+id/btn_sign_up"
         android:layout_alignParentLeft="true"
         android:layout_marginHorizontal="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_small"
@@ -118,10 +118,18 @@
         android:paddingLeft="@dimen/padding_large"
         android:paddingRight="@dimen/padding_large"
         android:text="@string/sign_in_with_google"
-        android:textSize="@dimen/text_medium"
         android:textAllCaps="false"
-        android:textColor="@color/black" />
-
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_medium" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_google_sign_in"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_x_medium"
+        android:visibility="gone"
+        />
     <TextView
         android:id="@+id/tv_dont_have_account"
         android:layout_width="wrap_content"
