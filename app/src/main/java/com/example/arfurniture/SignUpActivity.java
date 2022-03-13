@@ -137,7 +137,6 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                         } else {
@@ -150,8 +149,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -162,13 +159,12 @@ public class SignUpActivity extends AppCompatActivity {
                 GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
                 binding.progressBar.setVisibility(View.GONE);
                 if (acct != null) {
-                    Snackbar.make(new View(getApplicationContext()),"Google sign in successful",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(getWindow().getDecorView().getRootView(),"Google sign in successful",Snackbar.LENGTH_SHORT).show();
                     Intent toMainScreen=new Intent(this,MainScreenActivity.class);
                     startActivity(toMainScreen);
                     finish();
                 }
             } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
             }
         }

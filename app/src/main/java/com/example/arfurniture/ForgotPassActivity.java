@@ -21,6 +21,7 @@ public class ForgotPassActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent toMain = new Intent(ForgotPassActivity.this, MainActivity.class);
                 startActivity(toMain);
+                finish();
             }
         });
     }
