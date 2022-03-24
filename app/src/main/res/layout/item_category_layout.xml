@@ -15,8 +15,8 @@
             android:id="@+id/iv_pImage"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:src="@drawable/grey_chair"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/grey_chair" />
 
         <TextView
             android:id="@+id/tv_pName"
