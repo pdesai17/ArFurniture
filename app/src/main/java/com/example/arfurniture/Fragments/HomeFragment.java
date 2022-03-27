@@ -3,8 +3,10 @@ package com.example.arfurniture.Fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,10 +25,19 @@ import com.example.arfurniture.databinding.FragmentHomeBinding;
 import com.example.arfurniture.models.CatergoryModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,9 +48,9 @@ public class HomeFragment extends Fragment {
     String TAG = "home";
     FragmentHomeBinding binding;
     CategoriesAdapter adapter;
+    List<CatergoryModel> catergoryList;
     FirebaseFirestore firebaseFirestore;
     GridLayoutManager gridLayoutManager;
-    FirestoreRecyclerAdapter<CatergoryModel, CategoryViewHolder> catergoryAdapter;
     int tabIcons[] = {R.drawable.ic_armchair, R.drawable.ic_wardrobe, R.drawable.ic_sofa, R.drawable.ic_table, R.drawable.ic_bed, R.drawable.ic_lamp};
 
 
@@ -47,16 +59,19 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.d(TAG, "onCreateView: in home fragment");
+        catergoryList=new ArrayList<>();
+        gridLayoutManager=new GridLayoutManager(getContext(),2);
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
         firebaseFirestore = FirebaseFirestore.getInstance();
         getPageTitle();
         setUpIcons();
-        setUpRV(0);
+        setUpRV();
+        retrieveData(0);
         binding.tlCategorytabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Log.d(TAG, "onTabSelected: tab.getPosition()= " + tab.getPosition());
-                setUpRV(tab.getPosition());
+                retrieveData(tab.getPosition());
             }
 
             @Override
@@ -71,6 +86,50 @@ public class HomeFragment extends Fragment {
         });
         return binding.getRoot();
 
+    }
+
+    private void retrieveData(int tabPos) {
+        DocumentReference documentReference= firebaseFirestore.collection("CATEGORIES").document("cat_doc");
+        Query query = null;
+        switch (tabPos){
+            case 0:
+                Log.d(TAG, "setUpRV: case 0");
+                query = documentReference.collection("ARMCHAIR").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 1:
+                Log.d(TAG, "setUpRV: case 1");
+                query = documentReference.collection("WARDROBE").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 2:
+                Log.d(TAG, "setUpRV: case 2");
+                query = documentReference.collection("SOFA").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 3:
+                Log.d(TAG, "setUpRV: case 3");
+                query = documentReference.collection("TABLE").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 4:
+                Log.d(TAG, "setUpRV: case 4");
+                query = documentReference.collection("BED").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 5:
+                Log.d(TAG, "setUpRV: case 5");
+                query = documentReference.collection("LAMPS").orderBy("index", Query.Direction.ASCENDING);
+                break;
+        }
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                catergoryList.clear();
+                List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                for (DocumentSnapshot d:list)
+                {
+                    CatergoryModel obj=d.toObject(CatergoryModel.class);
+                    catergoryList.add(obj);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void getPageTitle () {
@@ -89,8 +148,13 @@ public class HomeFragment extends Fragment {
         binding.tlCategorytabs.getTabAt(4).setIcon(tabIcons[4]);
         binding.tlCategorytabs.getTabAt(5).setIcon(tabIcons[5]);
     }
-    private void setUpRV(int tabPos) {
-        binding.progressBar.setVisibility(View.VISIBLE);
+    private void setUpRV() {
+        adapter=new CategoriesAdapter(catergoryList);
+        binding.rvCategories.setLayoutManager(new GridLayoutManager(getContext(),2));
+        binding.rvCategories.setAdapter(adapter);
+
+
+       /* binding.progressBar.setVisibility(View.VISIBLE);
         Log.d(TAG, "setUpRV: progress bar visible");
 
         DocumentReference documentReference=firebaseFirestore.collection("CATEGORIES").document("cat_doc");
@@ -143,15 +207,15 @@ public class HomeFragment extends Fragment {
                 };
 
         Log.d(TAG, "setUpRV: "+query);
-        gridLayoutManager=new GridLayoutManager(getContext(),2);
+
         Log.d(TAG, "setUpRV: grid");
         binding.rvCategories.setLayoutManager(gridLayoutManager);
-        binding.rvCategories.setAdapter(catergoryAdapter);
+        binding.rvCategories.setAdapter(catergoryAdapter);*/
 
 
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
+    /*class CategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView pImage;
         TextView pName, pPrice;
 
@@ -162,19 +226,19 @@ public class HomeFragment extends Fragment {
             pPrice = itemView.findViewById(R.id.tv_pPrice);
         }
 
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         catergoryAdapter.startListening();
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onStop() {
         super.onStop();
         if (catergoryAdapter != null) {
             catergoryAdapter.stopListening();
         }
-    }
+    }*/
 }

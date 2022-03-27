@@ -61,9 +61,15 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"/>
 
+    <!--<androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tl_categorytabs"
+        />-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tl_categorytabs" />
+        android:layout_below="@+id/tl_categorytabs"/>
 </RelativeLayout>
