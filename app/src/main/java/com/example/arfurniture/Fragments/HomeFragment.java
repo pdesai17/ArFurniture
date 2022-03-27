@@ -37,8 +37,10 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     CategoriesAdapter adapter;
     FirebaseFirestore firebaseFirestore;
+    GridLayoutManager gridLayoutManager;
     FirestoreRecyclerAdapter<CatergoryModel, CategoryViewHolder> catergoryAdapter;
     int tabIcons[] = {R.drawable.ic_armchair, R.drawable.ic_wardrobe, R.drawable.ic_sofa, R.drawable.ic_table, R.drawable.ic_bed, R.drawable.ic_lamp};
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,42 +92,62 @@ public class HomeFragment extends Fragment {
     private void setUpRV(int tabPos) {
         binding.progressBar.setVisibility(View.VISIBLE);
         Log.d(TAG, "setUpRV: progress bar visible");
+
         DocumentReference documentReference=firebaseFirestore.collection("CATEGORIES").document("cat_doc");
         Query query = null;
         switch (tabPos){
             case 0:
+                Log.d(TAG, "setUpRV: case 0");
                 query = documentReference.collection("ARMCHAIR").orderBy("index", Query.Direction.ASCENDING);
                 break;
             case 1:
+                Log.d(TAG, "setUpRV: case 1");
                 query = documentReference.collection("WARDROBE").orderBy("index", Query.Direction.ASCENDING);
-                Log.d(TAG, "setUpRV: query 2 called");
+                break;
+            case 2:
+                Log.d(TAG, "setUpRV: case 2");
+                query = documentReference.collection("SOFA").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 3:
+                Log.d(TAG, "setUpRV: case 3");
+                query = documentReference.collection("TABLE").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 4:
+                Log.d(TAG, "setUpRV: case 4");
+                query = documentReference.collection("BED").orderBy("index", Query.Direction.ASCENDING);
+                break;
+            case 5:
+                Log.d(TAG, "setUpRV: case 5");
+                query = documentReference.collection("LAMPS").orderBy("index", Query.Direction.ASCENDING);
                 break;
         }
-        Log.d(TAG, "setUpRV: "+query);
         FirestoreRecyclerOptions<CatergoryModel> allNotes = new FirestoreRecyclerOptions.Builder<CatergoryModel>().setQuery(query, CatergoryModel.class).build();
-        Log.d(TAG, "setUpRV: allNotes= "+allNotes);
-        catergoryAdapter = new FirestoreRecyclerAdapter<CatergoryModel, CategoryViewHolder>(allNotes) {
+                Log.d(TAG, "setUpRV: allNotes= "+allNotes);
+                catergoryAdapter = new FirestoreRecyclerAdapter<CatergoryModel, CategoryViewHolder>(allNotes) {
+                    @NonNull
+                    @Override
+                    public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        Log.d(TAG, "onCreateViewHolder: ");
+                        return new CategoryViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_layout,parent,false));
+                    }
 
-            @NonNull
-            @Override
-            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                Log.d(TAG, "onCreateViewHolder: ");
-                 return new CategoryViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category_layout,parent,false));
-            }
+                    @Override
+                    protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull CatergoryModel model) {
+                        Log.d(TAG, "onBindViewHolder: price "+model.getPrice());
+                        holder.pName.setText(model.getName());
+                        holder.pPrice.setText("Rs. "+String.valueOf(model.getPrice()));
+                        Glide.with(getContext()).asDrawable().load(model.getImage()).into(holder.pImage);
+                        Log.d(TAG, "onBindViewHolder: "+model.getImage());
+                        binding.progressBar.setVisibility(View.GONE);
+                    }
+                };
 
-            @Override
-            protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull CatergoryModel model) {
-                holder.pName.setText(model.getName());
-                holder.pPrice.setText(String.valueOf(model.getPrice()));
-                Glide.with(getContext()).asDrawable().load(model.getImage()).into(holder.pImage);
-                Log.d(TAG, "onBindViewHolder: "+model.getImage());
-                binding.progressBar.setVisibility(View.GONE);
-            }
-        };
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),2);
+        Log.d(TAG, "setUpRV: "+query);
+        gridLayoutManager=new GridLayoutManager(getContext(),2);
         Log.d(TAG, "setUpRV: grid");
         binding.rvCategories.setLayoutManager(gridLayoutManager);
         binding.rvCategories.setAdapter(catergoryAdapter);
+
 
     }
 
