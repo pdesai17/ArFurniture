@@ -2,38 +2,24 @@ package com.example.arfurniture.Fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.arfurniture.Adapters.CategoriesAdapter;
 import com.example.arfurniture.R;
 import com.example.arfurniture.databinding.FragmentHomeBinding;
 import com.example.arfurniture.models.CatergoryModel;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -49,8 +35,10 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     CategoriesAdapter adapter;
     List<CatergoryModel> catergoryList;
-    FirebaseFirestore firebaseFirestore;
     GridLayoutManager gridLayoutManager;
+    List<String> productNameList;
+    FirebaseFirestore firebaseFirestore;
+    Query query=null;
     int tabIcons[] = {R.drawable.ic_armchair, R.drawable.ic_wardrobe, R.drawable.ic_sofa, R.drawable.ic_table, R.drawable.ic_bed, R.drawable.ic_lamp};
 
 
@@ -60,13 +48,16 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         Log.d(TAG, "onCreateView: in home fragment");
         catergoryList=new ArrayList<>();
+        productNameList=new ArrayList<>();
         gridLayoutManager=new GridLayoutManager(getContext(),2);
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
         firebaseFirestore = FirebaseFirestore.getInstance();
         getPageTitle();
         setUpIcons();
         setUpRV();
+        retrieveProductName();
         retrieveData(0);
+        Log.d(TAG, "onCreateView:productNameList= "+productNameList);
         binding.tlCategorytabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -86,6 +77,41 @@ public class HomeFragment extends Fragment {
         });
         return binding.getRoot();
 
+    }
+
+    private void retrieveProductName() {
+        DocumentReference documentReference= firebaseFirestore.collection("CATEGORIES").document("cat_doc");
+        query = documentReference.collection("ARMCHAIR").orderBy("index", Query.Direction.ASCENDING);
+        addProductName(query);
+        query = documentReference.collection("WARDROBE").orderBy("index", Query.Direction.ASCENDING);
+        addProductName(query);
+        query = documentReference.collection("SOFA").orderBy("index", Query.Direction.ASCENDING);
+        addProductName(query);
+        query = documentReference.collection("TABLE").orderBy("index", Query.Direction.ASCENDING);
+        addProductName(query);
+        query = documentReference.collection("BED").orderBy("index", Query.Direction.ASCENDING);
+        addProductName(query);
+        query = documentReference.collection("LAMPS").orderBy("index", Query.Direction.ASCENDING);
+        addProductName(query);
+        Log.d(TAG, "retrieveProductName: productNameList= "+productNameList);
+    }
+
+    private void addProductName(Query query) {
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                for (DocumentSnapshot d:list)
+                {
+                    CatergoryModel obj=d.toObject(CatergoryModel.class);
+                    productNameList.add(obj.getName());
+                }
+                Log.d(TAG, "onSuccess:productNameList= "+productNameList.size() );
+
+            }
+
+        });
     }
 
     private void retrieveData(int tabPos) {
