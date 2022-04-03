@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_add_cart.xml" value="0.109" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_ar_scan.xml" value="0.109" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_back.xml" value="0.109" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_cart.xml" value="0.109" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_circle.xml" value="0.109" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_like.xml" value="0.109" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/black_card_view.xml" value="0.2323799795709908" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/drawable_start.xml" value="0.23697916666666666" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/login.xml" value="0.23148148148148148" />
@@ -13,10 +19,13 @@
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_forgot_pass.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_main_screen.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_product_description.xml" value="0.2" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_cart.xml" value="0.19895833333333332" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_like.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_product_detail.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_product_details.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_profile.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/item_category_layout.xml" value="0.176" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.21666666666666667" />

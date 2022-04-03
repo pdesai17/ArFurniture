@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
         getPageTitle();
         setUpIcons();
         setUpRV();
-        retrieveProductName();
+        //retrieveProductName();
         retrieveData(0);
         Log.d(TAG, "onCreateView:productNameList= "+productNameList);
         binding.tlCategorytabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

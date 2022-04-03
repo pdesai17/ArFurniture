@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/rl_mainScreen"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,16 +14,16 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/margin_large"
         />
+
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/cnp_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:cnb_menuResource="@menu/bottom_navigation_menu"
         android:background="@color/white"
-        app:cnb_unselectedColor="@color/black"
         android:elevation="12dp"
-        />
+        app:cnb_menuResource="@menu/bottom_navigation_menu"
+        app:cnb_unselectedColor="@color/black" />
 
 
 </RelativeLayout>
