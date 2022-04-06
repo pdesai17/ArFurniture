@@ -26,20 +26,31 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     String TAG = "SignUpActivity";
     ActivitySignUpBinding binding;
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseUser firebaseUser;
     GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 104;
 
+    String sName,sEmail,sPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser=firebaseAuth.getCurrentUser();
+        firebaseFirestore=FirebaseFirestore.getInstance();
 
         binding.tvDontHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,16 +63,19 @@ public class SignUpActivity extends AppCompatActivity {
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.tilName.setError(null);
                 binding.tilEmail.setError(null);
                 binding.tilPassword.setError(null);
-                String sEmail = binding.tieEmail.getText().toString().trim();
-                String sPass = binding.tiePassword.getText().toString().trim();
+                sName = binding.tieName.getText().toString().trim();
+                sEmail = binding.tieEmail.getText().toString().trim();
+                sPass = binding.tiePassword.getText().toString().trim();
                 if (validate()) {
                     firebaseAuth.createUserWithEmailAndPassword(sEmail, sPass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Snackbar.make(view, "Registration Completed", Snackbar.LENGTH_SHORT).show();
                             sendVerification(view);
+                            addUserData();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -72,8 +86,37 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
 
+            private void addUserData() {
+                DocumentReference documentReference=firebaseFirestore
+                        .collection("USERS")
+                        .document(firebaseUser.getUid());
+                Map<String,String> map=new HashMap<>();
+                map.put("name",sName);
+                map.put("email",sEmail);
+                documentReference.set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: ");
+                    }
+                });
+
+                DocumentReference reference=firebaseFirestore
+                        .collection("USERS")
+                        .document(firebaseUser.getUid())
+                        .collection("WISHLIST")
+                        .document("prod_id");
+                Map<String,Integer> map1=new HashMap<>();
+                map1.put("size",  0);
+                reference.set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: map1");
+                    }
+                });
+            }
+
             private void sendVerification(View view) {
-                FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+                firebaseUser=firebaseAuth.getCurrentUser();
                 firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -90,15 +133,25 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             private boolean validate() {
+                String vName=binding.tieName.getText().toString().trim();
                 String vEmail=binding.tieEmail.getText().toString().trim();
                 String vPass=binding.tiePassword.getText().toString().trim();
-                if (vEmail.isEmpty() || vPass.isEmpty()) {
-                    if ((vEmail.isEmpty() || vEmail == null) && (vPass.isEmpty() || vPass == null)) {
+                Log.d(TAG, "validate: vName= "+vName);
+                Log.d(TAG, "validate: vEmail= "+vEmail);
+                Log.d(TAG, "validate: vPass= "+vPass);
+                if (vEmail.isEmpty() || vPass.isEmpty() || vName.isEmpty()) {
+                    if ((vName.isEmpty() || vName==null) &&(vEmail.isEmpty() || vEmail == null) && (vPass.isEmpty() || vPass == null)) {
+                        binding.tilName.setError("Name must not be empty");
                         binding.tilEmail.setError("Email must not be empty");
                         binding.tilPassword.setError("Password must not be empty");
-                    } else if (vPass.isEmpty() || vPass == null) {
+                    }
+                    if(vName.isEmpty() || vName.isEmpty()){
+                        binding.tilName.setError("Name must not be empty");
+                    }
+                    if (vPass.isEmpty() || vPass == null) {
                         binding.tilPassword.setError("Password must not be empty");
-                    } else if (vEmail.isEmpty() || vEmail == null) {
+                    }
+                    if (vEmail.isEmpty() || vEmail == null) {
                         binding.tilEmail.setError("Email must not be empty");
                     }
                 } else {
@@ -114,7 +167,7 @@ public class SignUpActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        firebaseAuth = FirebaseAuth.getInstance();
+
         binding.btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
