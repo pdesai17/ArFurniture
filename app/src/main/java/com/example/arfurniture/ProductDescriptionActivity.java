@@ -30,7 +30,7 @@ public class ProductDescriptionActivity extends AppCompatActivity {
         binding = ActivityProductDescriptionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         firebaseFirestore = FirebaseFirestore.getInstance();
-        sliderView = findViewById(R.id.slider_view);
+        sliderView = findViewById(R.id.sv_imagesSlider);
 
         Intent data = getIntent();
         Bundle bundle=getIntent().getExtras();
