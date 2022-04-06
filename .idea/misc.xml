@@ -9,6 +9,7 @@
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_cart.xml" value="0.109" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_circle.xml" value="0.109" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_like.xml" value="0.109" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xxxhdpi/settings_ic_foreground.xml" value="0.1335" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/black_card_view.xml" value="0.2323799795709908" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/drawable_start.xml" value="0.23697916666666666" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/login.xml" value="0.23148148148148148" />
@@ -16,6 +17,8 @@
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/tab_selected_bg.xml" value="0.2323799795709908" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/tab_selected_icon.xml" value="0.1" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/white_card_view.xml" value="0.23697916666666666" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_ar.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_arview.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_forgot_pass.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_main.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/activity_main_screen.xml" value="0.21666666666666667" />
@@ -30,6 +33,7 @@
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/item_category_layout.xml" value="0.176" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/slider_item_layout.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/menu/settings_menu.xml" value="0.21666666666666667" />
       </map>
     </option>
   </component>

@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -42,6 +44,9 @@ public class ProductDescriptionActivity extends AppCompatActivity {
     private SliderView sliderView;
     Long size= Long.valueOf(0);
     List<String> prodImages;
+    List<String> wishList;
+    DocumentReference documentReference;
+    Boolean ADDED_TO_WISHLIST;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +61,10 @@ public class ProductDescriptionActivity extends AppCompatActivity {
 
         Intent data = getIntent();
         Bundle bundle=getIntent().getExtras();
+
         prodImages=new ArrayList<>();
+        wishList=new ArrayList<>();
+
         List<CatergoryModel> catergoryList= (List<CatergoryModel>) bundle.getSerializable("CAT_LIST");
         int pos=data.getIntExtra("position",0);
         Log.d(TAG, "onCreate: pos= "+pos);
@@ -78,42 +86,60 @@ public class ProductDescriptionActivity extends AppCompatActivity {
         binding.tvProductName.setText(catergoryList.get(pos).getName());
         binding.productPrice.setText(String.valueOf(catergoryList.get(pos).getPrice()));
 
+        documentReference=firebaseFirestore
+                .collection("USERS")
+                .document(firebaseUser.getUid())
+                .collection("WISHLIST")
+                .document("prod_id");
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists())
+                {
+                    Toast.makeText(ProductDescriptionActivity.this, documentSnapshot.get("size").toString(), Toast.LENGTH_SHORT).show();
+                    size= (Long) documentSnapshot.get("size");
+                    /*for (int i = 1; i <=size; i++) {
+                        wishList.add(catergoryList.get(pos).getId());
+                    }*/
+                    Log.d(TAG, "onSuccess: wishlist= "+wishList);
+                    size++;
+                    Log.d(TAG, "onSuccess: size= "+catergoryList.get(pos).getId());
+                    if(documentSnapshot.get(catergoryList.get(pos).getId())!=null)
+                    {
+                        wishList.add(catergoryList.get(pos).getId());
+                    }
+                    if (wishList.contains(catergoryList.get(pos).getId()))
+                    {
+                        Log.d(TAG, "onSuccess: added to wish list ");
+                        wishList.add(catergoryList.get(pos).getId());
+                        ADDED_TO_WISHLIST=true;
+                        binding.btnWishlist.setImageResource(R.drawable.ic_like);
+                    }else {
+                        ADDED_TO_WISHLIST=false;
+                        Log.d(TAG, "onSuccess: not added ");
+                        binding.btnWishlist.setImageResource(R.drawable.ic_heart);
+                    }
+                }else {
+                    Toast.makeText(ProductDescriptionActivity.this, "documentSnapshot not exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ProductDescriptionActivity.this, "failure", Toast.LENGTH_SHORT).show();
+            }
+        });
         binding.btnWishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                DocumentReference documentReference=firebaseFirestore
-                        .collection("USERS")
-                        .document(firebaseUser.getUid())
-                        .collection("WISHLIST")
-                        .document("prod_id");
-                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists())
-                        {
-                            Toast.makeText(ProductDescriptionActivity.this, documentSnapshot.get("size").toString(), Toast.LENGTH_SHORT).show();
-                            size= (Long) documentSnapshot.get("size");
-                            size++;
-                            Log.d(TAG, "onSuccess: size= "+size);
-                        }else {
-                            Toast.makeText(ProductDescriptionActivity.this, "documentSnapshot not exists", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ProductDescriptionActivity.this, "failure", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+                binding.btnWishlist.setImageResource(R.drawable.ic_like);
                 Map<String,Object> map=new HashMap<>();
-                map.put("prod_id"+size,catergoryList.get(pos).getId());
+                map.put(catergoryList.get(pos).getId(),catergoryList.get(pos).getId());
                 map.put("size",  size);
-                documentReference.set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                documentReference.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Log.d(TAG, "onComplete: ");
+                        Snackbar.make(view,"Added to wishlist", Snackbar.LENGTH_SHORT).show();
                     }
                 });
 
@@ -121,5 +147,13 @@ public class ProductDescriptionActivity extends AppCompatActivity {
             }
         });
 
+
+        binding.ivArBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHelloAr=new Intent(getApplicationContext(),HelloArActivity.class);
+                startActivity(toHelloAr);
+            }
+        });
     }
 }
