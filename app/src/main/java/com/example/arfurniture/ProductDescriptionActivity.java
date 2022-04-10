@@ -90,28 +90,29 @@ public class ProductDescriptionActivity extends AppCompatActivity {
                 .collection("USERS")
                 .document(firebaseUser.getUid())
                 .collection("WISHLIST")
-                .document("prod_id");
+                .document(catergoryList.get(pos).getName());
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists())
                 {
-                    Toast.makeText(ProductDescriptionActivity.this, documentSnapshot.get("size").toString(), Toast.LENGTH_SHORT).show();
+                    /*Toast.makeText(ProductDescriptionActivity.this, documentSnapshot.get("size").toString(), Toast.LENGTH_SHORT).show();
                     size= (Long) documentSnapshot.get("size");
-                    /*for (int i = 1; i <=size; i++) {
-                        wishList.add(catergoryList.get(pos).getId());
-                    }*/
+                    for (int i = 1; i <=size; i++) {
+                        wishList.add(catergoryList.get(pos).getName());
+                    }
                     Log.d(TAG, "onSuccess: wishlist= "+wishList);
                     size++;
                     Log.d(TAG, "onSuccess: size= "+catergoryList.get(pos).getId());
                     if(documentSnapshot.get(catergoryList.get(pos).getId())!=null)
                     {
                         wishList.add(catergoryList.get(pos).getId());
-                    }
-                    if (wishList.contains(catergoryList.get(pos).getId()))
+                    }*/
+                    wishList.add(catergoryList.get(pos).getName());
+                    if (wishList.contains(catergoryList.get(pos).getName()))
                     {
                         Log.d(TAG, "onSuccess: added to wish list ");
-                        wishList.add(catergoryList.get(pos).getId());
+                        //wishList.add(catergoryList.get(pos).getId());
                         ADDED_TO_WISHLIST=true;
                         binding.btnWishlist.setImageResource(R.drawable.ic_like);
                     }else {
@@ -133,17 +134,32 @@ public class ProductDescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 binding.btnWishlist.setImageResource(R.drawable.ic_like);
-                Map<String,Object> map=new HashMap<>();
+               /* Map<String,Object> map=new HashMap<>();
                 map.put(catergoryList.get(pos).getId(),catergoryList.get(pos).getId());
-                map.put("size",  size);
-                documentReference.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                map.put("size",  size);*/
+                DocumentReference docRef=firebaseFirestore
+                        .collection("USERS")
+                        .document(firebaseUser.getUid())
+                        .collection("WISHLIST")
+                        .document(catergoryList.get(pos).getName());
+                Log.d(TAG, "onClick: ");
+                Map<String,Object> map1=new HashMap<>();
+                map1.put("name",catergoryList.get(pos).getName());
+                map1.put("description",catergoryList.get(pos).getDescription());
+                map1.put("price",catergoryList.get(pos).getPrice());
+                map1.put("image",catergoryList.get(pos).getImage());
+                map1.put("i1",catergoryList.get(pos).getI1());
+                map1.put("i2",catergoryList.get(pos).getI2());
+                map1.put("i3",catergoryList.get(pos).getI3());
+                map1.put("i4",catergoryList.get(pos).getI4());
+                map1.put("size",  size);
+                //if ()
+                docRef.set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Snackbar.make(view,"Added to wishlist", Snackbar.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         });
 
