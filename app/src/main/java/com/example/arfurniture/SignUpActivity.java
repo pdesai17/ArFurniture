@@ -26,6 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -76,6 +77,8 @@ public class SignUpActivity extends AppCompatActivity {
                             Snackbar.make(view, "Registration Completed", Snackbar.LENGTH_SHORT).show();
                             sendVerification(view);
                             addUserData();
+                            //createWishlist();
+                            //createCartList();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -86,7 +89,40 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
 
+            private void createWishlist() {
+                DocumentReference reference=firebaseFirestore
+                        .collection("USERS")
+                        .document(firebaseUser.getUid())
+                        .collection("WISHLIST")
+                        .document();
+                /*Map<String,Integer> map1=new HashMap<>();
+                map1.put("size",  0);
+                reference.set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: map1");
+                    }
+                });*/
+            }
+
+            private void createCartList() {
+                DocumentReference reference1=firebaseFirestore
+                        .collection("USERS")
+                        .document(firebaseUser.getUid())
+                        .collection("MY CART")
+                        .document();
+                /*Map<String,Integer> map1=new HashMap<>();
+                map1.put("size",  0);
+                reference1.set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: map1");
+                    }
+                });*/
+            }
+
             private void addUserData() {
+                Log.d(TAG, "addUserData: ");
                 DocumentReference documentReference=firebaseFirestore
                         .collection("USERS")
                         .document(firebaseUser.getUid());
@@ -99,8 +135,19 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.d(TAG, "onComplete: ");
                     }
                 });
-
-                DocumentReference reference=firebaseFirestore
+                /*CollectionReference reference=firebaseFirestore
+                        .collection("USERS")
+                        .document(firebaseUser.getUid())
+                        .collection("WISHLIST");*/
+                /*Map<String,Integer> map1=new HashMap<>();
+                map1.put("size",  0);
+                reference.set(map1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "onComplete: map1");
+                    }
+                });*/
+                /*DocumentReference reference=firebaseFirestore
                         .collection("USERS")
                         .document(firebaseUser.getUid())
                         .collection("WISHLIST")
@@ -112,7 +159,9 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         Log.d(TAG, "onComplete: map1");
                     }
-                });
+                });*/
+                Log.d(TAG, "addUserData: data added");
+
             }
 
             private void sendVerification(View view) {

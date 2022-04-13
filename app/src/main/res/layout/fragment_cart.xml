@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".Fragments.LikeFragment">
+    tools:context=".MainActivity">
+
     <TextView
+        android:id="@+id/tv_cartText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cart"
-        android:textSize="44sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/raleway_regular"
+        android:text="CART"
         android:textColor="@color/black"
-        android:fontFamily="@font/raleway_medium"/>
+        android:textSize="@dimen/text_x_large" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_buynow"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/idTVCourseRating5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="₹ 2000"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_x_large" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logout_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/black_card_view"
+            android:fontFamily="@font/raleway_regular"
+            android:text="Buy Now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_buynow"
+        android:layout_below="@id/tv_cartText"
+        tools:ignore="NotSibling" />
+
+</RelativeLayout>

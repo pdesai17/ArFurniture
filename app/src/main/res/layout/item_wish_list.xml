@@ -1,0 +1,54 @@
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="2dp"
+    android:layout_margin="@dimen/margin_x_small"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/rl_wishCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_small">
+
+        <ImageView
+            android:id="@+id/iv_wImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/grey_chair" />
+
+        <TextView
+            android:id="@+id/tv_wName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_wImage"
+            android:layout_alignStart="@+id/iv_wImage"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Grey Chair"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_medium" />
+        <TextView
+            android:id="@+id/tv_wPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_wName"
+            android:layout_alignStart="@+id/iv_wImage"
+            android:text="Rs. 4000"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_small"
+            android:fontFamily="@font/raleway_regular"/>
+
+        <ImageView
+            android:id="@+id/iv_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_wImage"
+            android:layout_alignEnd="@+id/iv_wImage"
+            android:contentDescription="@string/app_name"
+            android:padding="5dp"
+            android:src="@drawable/ic_heart" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

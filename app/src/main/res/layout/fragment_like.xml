@@ -13,11 +13,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/raleway_regular"
-        android:text="CART"
+        android:text="WISH LIST"
         android:textColor="@color/black"
         android:textSize="@dimen/text_x_large" />
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/rl_buynow"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -49,11 +49,11 @@
             android:textColor="@color/white"
             android:textSize="18dp" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRVCourse"
+        android:id="@+id/rv_wishlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rl_buynow"
