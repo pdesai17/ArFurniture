@@ -23,6 +23,9 @@
             android:name=".HelloArActivity"
             android:exported="false" />
         <activity
+            android:name=".HelloArActivitysofa"
+            android:exported="false" />
+        <activity
             android:name=".ProductDescriptionActivity"
             android:exported="false" />
         <activity

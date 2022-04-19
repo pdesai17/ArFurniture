@@ -110,13 +110,13 @@ public class MainActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         firebaseAuth = FirebaseAuth.getInstance();
-        binding.btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
+        /*binding.btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
-        });
+        });*/
 
         binding.tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override

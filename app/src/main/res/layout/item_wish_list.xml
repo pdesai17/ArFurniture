@@ -42,13 +42,16 @@
 
         <ImageView
             android:id="@+id/iv_remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/iv_wImage"
             android:layout_alignEnd="@+id/iv_wImage"
+            android:layout_marginTop="@dimen/margin_x_small"
+            android:background="@drawable/ic_circle"
             android:contentDescription="@string/app_name"
+            android:elevation="5dp"
             android:padding="5dp"
-            android:src="@drawable/ic_heart" />
+            android:src="@drawable/ic_like" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -217,14 +217,14 @@ public class SignUpActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        binding.btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
+        /*binding.btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 binding.progressBar.setVisibility(View.VISIBLE);
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
-        });
+        });*/
     }
     @Override
     protected void onStart() {

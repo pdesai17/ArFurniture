@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.arfurniture.Adapters.CartAdapter;
 import com.example.arfurniture.Adapters.WishlistAdapter;
 import com.example.arfurniture.R;
 import com.example.arfurniture.databinding.FragmentCartBinding;
@@ -38,7 +39,7 @@ public class CartFragment extends Fragment {
     FirebaseUser firebaseUser;
     FragmentCartBinding binding;
     ArrayList<CatergoryModel> wishlistArrayList;
-    WishlistAdapter adapter;
+    CartAdapter adapter;
     Long totalPrice= Long.valueOf(0);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,7 +94,7 @@ public class CartFragment extends Fragment {
         return binding.getRoot();
     }
     private void setUpRV() {
-        adapter=new WishlistAdapter(wishlistArrayList);
+        adapter=new CartAdapter(wishlistArrayList);
         binding.rvCart.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvCart.setAdapter(adapter);
     }

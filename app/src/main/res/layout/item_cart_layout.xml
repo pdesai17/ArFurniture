@@ -86,7 +86,7 @@
             android:layout_alignParentBottom="true"
             android:contentDescription="@string/app_name"
             android:padding="5dp"
-            android:src="@drawable/ic_heart" />
+            android:src="@drawable/ic_remove" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
 

@@ -113,7 +113,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_medium" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <!--<androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_google_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,12 +129,12 @@
         android:text="@string/sign_in_with_google"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_medium" />
+        android:textSize="@dimen/text_medium" />-->
 <ProgressBar
     android:id="@+id/progress_bar"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/btn_google_sign_in"
+    android:layout_below="@id/btn_sign_in"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="@dimen/margin_x_medium"
     android:visibility="gone"
@@ -143,7 +143,7 @@
         android:id="@+id/tv_dont_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_google_sign_in"
+        android:layout_below="@+id/btn_sign_in"
         android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/margin_130"
         android:fontFamily="@font/raleway_regular"

@@ -11,6 +11,7 @@
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xhdpi/ic_like.xml" value="0.109" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable-xxxhdpi/settings_ic_foreground.xml" value="0.1335" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/black_card_view.xml" value="0.2323799795709908" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/circle_black.xml" value="0.1235" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/drawable_start.xml" value="0.23697916666666666" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/login.xml" value="0.23148148148148148" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/drawable/tab_bg.xml" value="0.2323799795709908" />
@@ -29,7 +30,7 @@
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_like.xml" value="0.2" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_product_detail.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_product_details.xml" value="0.21666666666666667" />
-        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_profile.xml" value="0.21666666666666667" />
+        <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/item_cart_layout.xml" value="0.21666666666666667" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/item_category_layout.xml" value="0.176" />
         <entry key="..\:/6cse/sgp/ArFurniture/app/src/main/res/layout/item_wish_list.xml" value="0.21666666666666667" />

@@ -1,16 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/ll_profile"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".Fragments.LikeFragment">
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
     <TextView
+        android:id="@+id/tv_profileTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textSize="44sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/raleway_regular"
+        android:text="PROFILE"
         android:textColor="@color/black"
-        android:fontFamily="@font/raleway_medium"/>
+        android:textSize="@dimen/text_x_large" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_profileTitle"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_large"
+        tools:text="James Ronald" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_username"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:fontFamily="@font/raleway_regular"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text_x_medium"
+        tools:text="abc@gmail.com" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_profileTitle"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_small"
+        android:background="@drawable/circle_black"
+        android:padding="@dimen/padding_12"
+        android:src="@drawable/ic_edit" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_email"
+        android:layout_marginTop="@dimen/margin_150"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_x_small">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cart"
+                android:layout_marginLeft="@dimen/margin_small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:text="Cart"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/margin_x_large"
+                android:textSize="@dimen/text_x_medium" />
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:background="@color/light_grey"
+            />
+        <LinearLayout
+            android:id="@+id/ll_wishlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_x_small">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_heart"
+                android:layout_marginLeft="@dimen/margin_small"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:text="Wishlist"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/margin_x_large"
+                android:textSize="@dimen/text_x_medium" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:background="@color/light_grey"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_x_small">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bag"
+                android:layout_marginLeft="@dimen/margin_small"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:text="Orders"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/margin_x_large"
+                android:textSize="@dimen/text_x_medium" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:background="@color/light_grey"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_x_small">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:src="@drawable/ic_help"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:text="Help"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:textSize="@dimen/text_x_medium" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:background="@color/light_grey"
+            />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_log_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll"
+        android:layout_alignParentLeft="true"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="149dp"
+        android:background="@drawable/black_card_view"
+        android:fontFamily="@font/raleway_medium"
+        android:text="Log out"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_medium" />
+
+
+
+</RelativeLayout>

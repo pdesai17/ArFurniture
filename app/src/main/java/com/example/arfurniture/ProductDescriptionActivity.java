@@ -207,9 +207,18 @@ public class ProductDescriptionActivity extends AppCompatActivity {
         binding.ivArBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toHelloAr=new Intent(getApplicationContext(),HelloArActivity.class);
-                //toHelloAr.putExtra("NAME",catergoryList.get(pos).getName());
-                startActivity(toHelloAr);
+                if(catergoryList.get(pos).getName().equalsIgnoreCase("Armchair 1") )
+                {
+                    Toast.makeText(getApplicationContext(), "chair act", Toast.LENGTH_LONG).show();
+                    Intent toHelloAr=new Intent(getApplicationContext(),HelloArActivity.class);
+                    startActivity(toHelloAr);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "sofa act", Toast.LENGTH_LONG).show();
+                    Intent toHelloAr2=new Intent(getApplicationContext(),HelloArActivitysofa.class);
+                    startActivity(toHelloAr2);
+                }
             }
         });
     }
